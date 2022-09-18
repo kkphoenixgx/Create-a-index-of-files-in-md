@@ -1,0 +1,31 @@
+{
+  "name": "create-a-md-index-of-files",
+  "version": "1.0.0",
+  "description": "Just a automatic way to read all the files of a directory and create a index of all the files in md that you can modelate.",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kkphoenixgx/Create-a-index-of-files-in-md.git"
+  },
+  "keywords": [
+    "automation",
+    "md",
+    "javascript",
+    "node",
+    "index"
+  ],
+  "author": "kkphoenix",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kkphoenixgx/Create-a-index-of-files-in-md/issues"
+  },
+  "homepage": "https://github.com/kkphoenixgx/Create-a-index-of-files-in-md#readme",
+  "dependencies": {
+    "inquirer": "^9.1.1",
+    "nanospinner": "^1.1.0"
+  }
+}
