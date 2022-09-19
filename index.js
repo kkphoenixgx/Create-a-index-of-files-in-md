@@ -18,7 +18,8 @@ sleep();
 
 try { 
     spinner.success({text : 'Content created'});
-    index.createIndex(ignoreFolders);
+    if(ignoreFolders) index.createIndex(ignoreFolders);
+    else index.createIndex()
 }catch(error){
     spinner.error({ text : chalkAnimation.glitch('THAT IS A ERROR').start() });
     console.error(error);

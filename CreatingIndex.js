@@ -7,7 +7,7 @@ export class CreateIndex {
         this._pathType = pathType
     }
 
-    async createIndex(ignoreImgFolder = false){
+    async createIndex(ignoreImgFolder = null){
 
         try {
             this._directory = this._directory.split('\\').join("/");
@@ -22,37 +22,39 @@ export class CreateIndex {
             
             files.forEach(file => {
 
-                if(ignoreImgFolder){
+                if(ignoreImgFolder != null){
+                    
                     ignoreImgFolder.forEach(folder=>{
                         if(folder == file) { return console.log("excluded") }
-                        else {
-                            
-                            if ( fs.statSync(this._directory + '/' + file).isDirectory() ){
-        
-                                let path = this._directory + `/${file}/`
-                                fs.readdir(path, (err, file) => {
-                                    if(err) console.error(err)
+                        else this.generateIndex(file);
+                    });
 
-                                    let folder = path.split('/')
-                                    folder = folder[folder.length-2]
-
-                                    file.forEach(subFile => {
-                                        console.log(`|[${subFile}](${folder}/${subFile})|` + this._pathType)
-                                    })
-            
-                                });
-                                
-                            }else{
-                                console.log(`|[${file}](./${file})|` + this._pathType );
-                            }
-
-                        }
-                    })
-                }
+                } else this.generateIndex(file);
         
             });
         });
     
+    }
+
+    async generateIndex(file){
+        if ( fs.statSync(this._directory + '/' + file).isDirectory() ){
+        
+            let path = this._directory + `/${file}/`
+            fs.readdir(path, (err, file) => {
+                if(err) console.error(err)
+
+                let folder = path.split('/')
+                folder = folder[folder.length-2]
+
+                file.forEach(subFile => {
+                    console.log(`|[${subFile}](${folder}/${subFile})|` + this._pathType)
+                })
+
+            });
+            
+        }else{
+            console.log(`|[${file}](./${file})|` + this._pathType );
+        }
     }
 
 }
